@@ -1,0 +1,7 @@
+fastapi==0.138.1
+uvicorn==0.49.0
+psycopg2-binary
+python-dotenv
+redis
+supabase==2.31.0
+email-validator

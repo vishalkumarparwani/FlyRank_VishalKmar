@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Widget Platform Demo</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#333;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+header h1{
+    color:#2563eb;
+}
+
+header button{
+    padding:12px 22px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+header button:hover{
+    background:#1d4ed8;
+}
+
+.hero{
+    max-width:850px;
+    margin:120px auto;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#666;
+    font-size:18px;
+    line-height:1.6;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hidden{
+    display:none;
+}
+
+.widget{
+    width:420px;
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    animation:popup .25s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:translateY(40px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+.widget-header{
+    background:#2563eb;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 22px;
+}
+
+.widget-header button{
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+form{
+    padding:22px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:14px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.submitBtn{
+    width:100%;
+    margin-top:22px;
+    padding:14px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.submitBtn:hover{
+    background:#1d4ed8;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>SpecFlow AI</h1>
+
+    <button id="openWidget">
+        Contact Us
+    </button>
+</header>
+
+<section class="hero">
+    <h2>AI Product Management Platform</h2>
+
+    <p>
+        Convert ideas into product specifications,
+        roadmaps and implementation plans using AI.
+    </p>
+</section>
+
+<div class="overlay hidden" id="overlay">
+
+    <div class="widget">
+
+        <div class="widget-header">
+            <h3>Contact Us</h3>
+
+            <button id="closeWidget">✕</button>
+        </div>
+
+        <form id="leadForm">
+
+            <label>Name</label>
+            <input
+                type="text"
+                placeholder="John Doe"
+                required
+            >
+
+            <label>Email</label>
+            <input
+                type="email"
+                placeholder="john@email.com"
+                required
+            >
+
+            <label>Company</label>
+            <input
+                type="text"
+                placeholder="Company Name"
+            >
+
+            <label>Message</label>
+            <textarea
+                rows="5"
+                placeholder="Tell us about your project..."
+            ></textarea>
+
+            <button class="submitBtn">
+                Submit
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+const overlay = document.getElementById("overlay");
+
+document
+.getElementById("openWidget")
+.onclick = () => {
+
+    overlay.classList.remove("hidden");
+
+};
+
+document
+.getElementById("closeWidget")
+.onclick = () => {
+
+    overlay.classList.add("hidden");
+
+};
+
+overlay.onclick = (e) => {
+
+    if(e.target === overlay){
+
+        overlay.classList.add("hidden");
+
+    }
+
+};
+
+document
+.getElementById("leadForm")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    alert("This would send the data to your backend.");
+
+    overlay.classList.add("hidden");
+
+});
+</script>
+
+</body>
+</html>
